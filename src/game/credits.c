@@ -9,6 +9,7 @@ char *credits[] = {
   " Contributors:",
   " Programming: Darrell Walisser  Nicolas Deniaud",
   "              Todd Kirby  Andy Howe  Jon Atkins",
+  "              IMax The GOAT                    ",
   " Art:         Nicolas Zimmermann",
   "              Charles Babbage       Tracy Brown"
   "              Tyler Esselstrom       Allen Bond",
