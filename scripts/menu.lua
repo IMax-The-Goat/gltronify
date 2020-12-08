@@ -90,8 +90,8 @@ Menu = {
    },
    BotSkill = {
       type = MenuC.type.list, caption = "Bot Skill",
-      labels = { "dumb", "normal", "strong", "the MCP himself" },
-      values = { 0, 1, 2, 3 },
+      labels = { "dumb", "normal", "strong", "the MCP himself", "random" },
+      values = { 0, 1, 2, 3, 4 },
       read = function() return settings.ai_level; end,
       store = function (value) settings.ai_level = value; end
    },
