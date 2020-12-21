@@ -1,6 +1,8 @@
 #include "game/game.h"
 #include "game/ai.h"
 #include "video/video.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define LEFT(x) ((x + 3) % 4)
 #define RIGHT(x) ((x + 1) % 4)
@@ -51,6 +53,16 @@ void doComputerRandom(int player, int target, AI_Distances *distances) {
 
 
   // modify below ////////////////////////////////////////////////////////////
+
+  int randomTurn = rand() % 2;
+
+  if (randomTurn == 0){
+    createEvent(player, EVENT_TURN_RIGHT);
+  }
+  else if (randomTurn == 1){
+    createEvent(player, EVENT_TURN_LEFT);
+  }
+
 
   // use these functions to turn the lightcycle
   // createEvent(player, EVENT_TURN_LEFT);
