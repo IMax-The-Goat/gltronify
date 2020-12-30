@@ -78,7 +78,7 @@ void doComputerRandom(int player, int target, AI_Distances *distances) {
 
 }
 
-void doComputerRandom(int player, int target, AI_Distances *distances) {
+void doComputerSmart(int player, int target, AI_Distances *distances) {
 
   // DEBUG:  do not modify this block ----------------------------------------
   Player *me = &(game->player[player]);
@@ -103,20 +103,18 @@ void doComputerRandom(int player, int target, AI_Distances *distances) {
 
 
   // modify below ////////////////////////////////////////////////////////////
-
-int minimax(char board[][7], bool taken[][7], vector <int> bottom, int alpha, int beta, int depth, bool ismax){
-    int score;
+  int score;
 
     //base case
     
     //if ((depth == 0) || (game(board, taken, score))) {
-    if ((game(board, taken, score)) || (depth == 0)) {
-        
-        //cout << "looking at (terminal) node with value: " << score << endl;
-        //draw(board);
-        //cout << "score for this board is " << score << endl;
-        return (score + depth);
-        //return (score);
+  if ((game(board, taken, score)) || (depth == 0)) {
+
+      //cout << "looking at (terminal) node with value: " << score << endl;
+      //draw(board);
+      //cout << "score for this board is " << score << endl;
+      return (score + depth);
+      //return (score);
     }
 
     //maximizer
@@ -182,8 +180,6 @@ int minimax(char board[][7], bool taken[][7], vector <int> bottom, int alpha, in
         }    
         return best;
     }
-}
-
 
   // use these functions to turn the lightcycle
   // createEvent(player, EVENT_TURN_LEFT);
