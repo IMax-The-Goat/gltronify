@@ -330,6 +330,8 @@ void doComputer(int player, int target) {
 
   if (gSettingsCache.ai_level == 4) {
     doComputerRandom(player, target, &distances);
+  } else if (gSettingsCache.ai_level == 5) {
+    doComputerSmart(player, target, &distances);
   } else if (opponent == -1 || d > OPP_MAX_DIST || distances.front < d ||
      game->player[opponent].ai == NULL ||
      game->player[opponent].ai->active == 1 ||
