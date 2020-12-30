@@ -78,7 +78,126 @@ void doComputerRandom(int player, int target, AI_Distances *distances) {
 
 }
 
+void doComputerRandom(int player, int target, AI_Distances *distances) {
 
+  // DEBUG:  do not modify this block ----------------------------------------
+  Player *me = &(game->player[player]);
+
+  if (me->ai == NULL) {
+    printf("This player has no AI data!\n");
+    return;
+  }
+
+  AI *ai = me->ai;
+  Data *data = me->data;
+ 
+  // turn off booster
+  data->boost_enabled = 0;
+
+  // turn once per second (1000ms)
+  if (game2->time.current - ai->lasttime < 1000) {
+    return;
+  }
+  // -------------------------------------------------------------------------
+
+
+
+  // modify below ////////////////////////////////////////////////////////////
+
+int minimax(char board[][7], bool taken[][7], vector <int> bottom, int alpha, int beta, int depth, bool ismax){
+    int score;
+
+    //base case
+    
+    //if ((depth == 0) || (game(board, taken, score))) {
+    if ((game(board, taken, score)) || (depth == 0)) {
+        
+        //cout << "looking at (terminal) node with value: " << score << endl;
+        //draw(board);
+        //cout << "score for this board is " << score << endl;
+        return (score + depth);
+        //return (score);
+    }
+
+    //maximizer
+    
+    if (ismax)
+    {
+        int best = -1000;
+        
+        for (int c = 0; c < 7; c++) 
+        {
+            if (bottom[c] < 6)
+            {
+                board[bottom [c]][c] = 'O';
+                taken[bottom [c]][c] = true;
+                bottom [c] ++;
+                
+                        //cout << "looking at (maximize) child node: " << c << endl;
+                        //draw(board);
+                        
+                best = max(best, minimax(board, taken, bottom, alpha, beta, depth-1, false));
+                
+                bottom [c] --;
+                board[bottom [c]][c] = '_';
+                taken[bottom [c]][c] = false;
+                
+                alpha = max(alpha, best);
+                if (beta <= alpha){
+                    break;
+                }
+            }
+        }  
+
+        return best;
+    }
+    
+    //minimizer
+    
+    else {
+        int best = 1000;
+        
+        
+        for (int c = 0; c < 7; c++){
+            if (bottom[c] < 6)
+            {
+                board[bottom [c]][c] = 'X';
+                taken[bottom [c]][c] = true;
+                bottom [c] ++;
+                
+                        //cout << "looking at (minimize) child node: " << c << endl;
+                        //draw(board);
+                        
+                best = min(best, minimax(board, taken, bottom, alpha, beta, depth-1, true));
+                bottom [c] --;
+                
+                board[bottom [c]][c] = '_';
+                taken[bottom [c]][c] = false;
+                
+                beta = min(beta, best);
+                if (beta <= alpha){
+                    break;
+                }
+            }
+        }    
+        return best;
+    }
+}
+
+
+  // use these functions to turn the lightcycle
+  // createEvent(player, EVENT_TURN_LEFT);
+  // createEvent(player, EVENT_TURN_RIGHT);
+
+  // modify above ////////////////////////////////////////////////////////////
+
+
+
+  // do not modify this block ------------------------------------------------
+  ai->lasttime = game2->time.current;
+  // -------------------------------------------------------------------------
+
+}
 
 
 // play as if nothing concerned us
