@@ -99,16 +99,12 @@ void doComputerSmart(int player, int target, AI_Distances *distances) {
     return;
   }
   // -------------------------------------------------------------------------
-
-
-
+/*
   // modify below ////////////////////////////////////////////////////////////
   int score;
+  int depth = 7;
 
-    //base case
-    
-    //if ((depth == 0) || (game(board, taken, score))) {
-  if ((game(board, taken, score)) || (depth == 0)) {
+  if () {
 
       //cout << "looking at (terminal) node with value: " << score << endl;
       //draw(board);
@@ -130,9 +126,6 @@ void doComputerSmart(int player, int target, AI_Distances *distances) {
                 board[bottom [c]][c] = 'O';
                 taken[bottom [c]][c] = true;
                 bottom [c] ++;
-                
-                        //cout << "looking at (maximize) child node: " << c << endl;
-                        //draw(board);
                         
                 best = max(best, minimax(board, taken, bottom, alpha, beta, depth-1, false));
                 
@@ -186,7 +179,7 @@ void doComputerSmart(int player, int target, AI_Distances *distances) {
   // createEvent(player, EVENT_TURN_RIGHT);
 
   // modify above ////////////////////////////////////////////////////////////
-
+*/
 
 
   // do not modify this block ------------------------------------------------
